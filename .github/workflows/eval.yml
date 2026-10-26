@@ -1,0 +1,23 @@
+name: eval
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install -r requirements.txt
+      - run: pytest -q
+      - name: Run fixture eval (fails if field accuracy < 0.8 or regresses vs baseline)
+        run: python -m harness.runner --agent fixture --cases cases/ --baseline reports/baseline.json --min-accuracy 0.8
+      - name: Run OpenAI eval (only if secret is configured)
+        if: env.OPENAI_API_KEY != ''
+        env: {OPENAI_API_KEY: "${{ secrets.OPENAI_API_KEY }}"}
+        run: pip install openai && python -m harness.runner --agent openai --cases cases/ --out reports/openai/
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: eval-report, path: reports/}
