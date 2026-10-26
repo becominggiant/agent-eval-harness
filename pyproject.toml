@@ -1,0 +1,12 @@
+[project]
+name = "agent-eval-harness"
+version = "0.1.0"
+description = "Golden-case eval & observability harness for LLM agents: accuracy, JSON validity, latency, cost, regression gating in CI."
+requires-python = ">=3.10"
+license = {text = "MIT"}
+dependencies = ["pyyaml>=6", "pydantic>=2"]
+[project.optional-dependencies]
+openai = ["openai>=1.40"]
+dev = ["pytest>=8"]
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,11 @@
+task: margin_calc
+cases:
+  - id: margin-001
+    input: {buy: 20.0, sell: 50.0, fee_pct: 0.08}
+    expected: {profit: 26.0, margin_pct: 52.0}
+  - id: margin-002
+    input: {buy: 100.0, sell: 120.0, fee_pct: 0.10}
+    expected: {profit: 8.0, margin_pct: 6.67}
+  - id: margin-003
+    input: {buy: 15.0, sell: 12.0, fee_pct: 0.08}
+    expected: {profit: -3.96, margin_pct: -33.0}

@@ -1,0 +1,240 @@
+{
+  "agent": "fixture",
+  "model": "fixture",
+  "timestamp": "2026-10-26T15:11:05-0500",
+  "summary": {
+    "cases": 12,
+    "exact_accuracy": 0.9166666666666666,
+    "field_accuracy": 0.9791666666666666,
+    "json_validity": 1.0,
+    "latency_p50_ms": 0.008599497959949076,
+    "latency_p95_ms": 0.029009999707341194,
+    "total_cost_usd": 0.0,
+    "by_task": {
+      "extract_listing": {
+        "cases": 4,
+        "exact_accuracy": 0.75,
+        "field_accuracy": 0.9375
+      },
+      "margin_calc": {
+        "cases": 3,
+        "exact_accuracy": 1.0,
+        "field_accuracy": 1.0
+      },
+      "classify_ticket": {
+        "cases": 5,
+        "exact_accuracy": 1.0,
+        "field_accuracy": 1.0
+      }
+    }
+  },
+  "results": [
+    {
+      "id": "extract-001",
+      "task": "extract_listing",
+      "latency_ms": 0.19277899991720915,
+      "prompt_tokens": 16,
+      "completion_tokens": 21,
+      "cost_usd": 0.0,
+      "output": "{\"brand\": \"Nintendo\", \"product\": \"Game Boy DMG\", \"condition\": \"used\", \"price\": 85.0}",
+      "error": null,
+      "json_valid": true,
+      "field_accuracy": 1.0,
+      "exact": true,
+      "field_results": {
+        "brand": 1.0,
+        "product": 1.0,
+        "condition": 1.0,
+        "price": 1.0
+      }
+    },
+    {
+      "id": "extract-002",
+      "task": "extract_listing",
+      "latency_ms": 0.029009999707341194,
+      "prompt_tokens": 13,
+      "completion_tokens": 22,
+      "cost_usd": 0.0,
+      "output": "{\"brand\": \"Apple\", \"product\": \"AirPods Pro 2nd gen\", \"condition\": \"new\", \"price\": 189.99}",
+      "error": null,
+      "json_valid": true,
+      "field_accuracy": 1.0,
+      "exact": true,
+      "field_results": {
+        "brand": 1.0,
+        "product": 1.0,
+        "condition": 1.0,
+        "price": 1.0
+      }
+    },
+    {
+      "id": "extract-003",
+      "task": "extract_listing",
+      "latency_ms": 0.017062993720173836,
+      "prompt_tokens": 16,
+      "completion_tokens": 17,
+      "cost_usd": 0.0,
+      "output": "{\"brand\": \"Sony\", \"product\": \"WH\", \"condition\": \"used\", \"price\": 140.0}",
+      "error": null,
+      "json_valid": true,
+      "field_accuracy": 0.75,
+      "exact": false,
+      "field_results": {
+        "brand": 1.0,
+        "product": 0.0,
+        "condition": 1.0,
+        "price": 1.0
+      }
+    },
+    {
+      "id": "extract-004",
+      "task": "extract_listing",
+      "latency_ms": 0.013092998415231705,
+      "prompt_tokens": 14,
+      "completion_tokens": 24,
+      "cost_usd": 0.0,
+      "output": "{\"brand\": \"Pokemon\", \"product\": \"Base Set Charizard holo card\", \"condition\": \"new\", \"price\": 350.0}",
+      "error": null,
+      "json_valid": true,
+      "field_accuracy": 1.0,
+      "exact": true,
+      "field_results": {
+        "brand": 1.0,
+        "product": 1.0,
+        "condition": 1.0,
+        "price": 1.0
+      }
+    },
+    {
+      "id": "margin-001",
+      "task": "margin_calc",
+      "latency_ms": 0.01456199970562011,
+      "prompt_tokens": 11,
+      "completion_tokens": 9,
+      "cost_usd": 0.0,
+      "output": "{\"profit\": 26.0, \"margin_pct\": 52.0}",
+      "error": null,
+      "json_valid": true,
+      "field_accuracy": 1.0,
+      "exact": true,
+      "field_results": {
+        "profit": 1.0,
+        "margin_pct": 1.0
+      }
+    },
+    {
+      "id": "margin-002",
+      "task": "margin_calc",
+      "latency_ms": 0.010421994375064969,
+      "prompt_tokens": 11,
+      "completion_tokens": 8,
+      "cost_usd": 0.0,
+      "output": "{\"profit\": 8.0, \"margin_pct\": 6.67}",
+      "error": null,
+      "json_valid": true,
+      "field_accuracy": 1.0,
+      "exact": true,
+      "field_results": {
+        "profit": 1.0,
+        "margin_pct": 1.0
+      }
+    },
+    {
+      "id": "margin-003",
+      "task": "margin_calc",
+      "latency_ms": 0.006777001544833183,
+      "prompt_tokens": 11,
+      "completion_tokens": 9,
+      "cost_usd": 0.0,
+      "output": "{\"profit\": -3.96, \"margin_pct\": -33.0}",
+      "error": null,
+      "json_valid": true,
+      "field_accuracy": 1.0,
+      "exact": true,
+      "field_results": {
+        "profit": 1.0,
+        "margin_pct": 1.0
+      }
+    },
+    {
+      "id": "ticket-001",
+      "task": "classify_ticket",
+      "latency_ms": 0.005405003321357071,
+      "prompt_tokens": 17,
+      "completion_tokens": 5,
+      "cost_usd": 0.0,
+      "output": "{\"category\": \"billing\"}",
+      "error": null,
+      "json_valid": true,
+      "field_accuracy": 1.0,
+      "exact": true,
+      "field_results": {
+        "category": 1.0
+      }
+    },
+    {
+      "id": "ticket-002",
+      "task": "classify_ticket",
+      "latency_ms": 0.005435009370557964,
+      "prompt_tokens": 14,
+      "completion_tokens": 6,
+      "cost_usd": 0.0,
+      "output": "{\"category\": \"shipping\"}",
+      "error": null,
+      "json_valid": true,
+      "field_accuracy": 1.0,
+      "exact": true,
+      "field_results": {
+        "category": 1.0
+      }
+    },
+    {
+      "id": "ticket-003",
+      "task": "classify_ticket",
+      "latency_ms": 0.005654001142829657,
+      "prompt_tokens": 14,
+      "completion_tokens": 6,
+      "cost_usd": 0.0,
+      "output": "{\"category\": \"technical\"}",
+      "error": null,
+      "json_valid": true,
+      "field_accuracy": 1.0,
+      "exact": true,
+      "field_results": {
+        "category": 1.0
+      }
+    },
+    {
+      "id": "ticket-004",
+      "task": "classify_ticket",
+      "latency_ms": 0.0053340045269578695,
+      "prompt_tokens": 16,
+      "completion_tokens": 5,
+      "cost_usd": 0.0,
+      "output": "{\"category\": \"returns\"}",
+      "error": null,
+      "json_valid": true,
+      "field_accuracy": 1.0,
+      "exact": true,
+      "field_results": {
+        "category": 1.0
+      }
+    },
+    {
+      "id": "ticket-005",
+      "task": "classify_ticket",
+      "latency_ms": 0.004817004082724452,
+      "prompt_tokens": 15,
+      "completion_tokens": 5,
+      "cost_usd": 0.0,
+      "output": "{\"category\": \"general\"}",
+      "error": null,
+      "json_valid": true,
+      "field_accuracy": 1.0,
+      "exact": true,
+      "field_results": {
+        "category": 1.0
+      }
+    }
+  ]
+}

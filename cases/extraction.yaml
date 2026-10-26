@@ -1,0 +1,14 @@
+task: extract_listing
+cases:
+  - id: extract-001
+    input: "Vintage Nintendo Game Boy DMG-01, grey, tested and working, $85"
+    expected: {brand: Nintendo, product: Game Boy DMG-01, condition: used, price: 85.0}
+  - id: extract-002
+    input: "Brand new sealed Apple AirPods Pro 2nd gen - $189.99"
+    expected: {brand: Apple, product: AirPods Pro 2nd gen, condition: new, price: 189.99}
+  - id: extract-003
+    input: "Sony WH-1000XM4 headphones, pre-owned, minor scuffs. Asking $140"
+    expected: {brand: Sony, product: WH-1000XM4 headphones, condition: used, price: 140.0}
+  - id: extract-004
+    input: "Pokemon Base Set Charizard holo card, NEW in sleeve, $350"
+    expected: {brand: Pokemon, product: Base Set Charizard holo card, condition: new, price: 350.0}

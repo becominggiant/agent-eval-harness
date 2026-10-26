@@ -1,0 +1,17 @@
+task: classify_ticket
+cases:
+  - id: ticket-001
+    input: "I was charged twice for my order, please refund the duplicate payment"
+    expected: {category: billing}
+  - id: ticket-002
+    input: "My package says delivered but it never arrived at my door"
+    expected: {category: shipping}
+  - id: ticket-003
+    input: "The app crashes every time I open the live stream page"
+    expected: {category: technical}
+  - id: ticket-004
+    input: "The card I received is not what was shown, I want to send it back"
+    expected: {category: returns}
+  - id: ticket-005
+    input: "Hey, do you have any more of the blue sweaters coming soon?"
+    expected: {category: general}
