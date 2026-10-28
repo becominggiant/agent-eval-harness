@@ -77,7 +77,7 @@ The one failure (`extract-003`): the rule-based extractor split on the hyphen in
 - **Two gates, not one.** An absolute floor (`--min-accuracy`, default 0.8) catches broken agents; a relative gate (`--max-regression`, default 0.02 vs `reports/baseline.json`) catches slow drift from prompt or model changes.
 - **Tolerant scoring.** Numbers match within 1%, strings exactly or fuzzily (≥0.85). That keeps harmless formatting differences from counting as failures, at the cost of sometimes accepting near-misses.
 - **Tradeoffs:** golden cases are small (12) and hand-written, so they show regressions, not general capability. Latency for the fixture agent is in-process and not representative of real API latency.
-- **Failure points:** malformed case files, agent exceptions, and invalid JSON are all scored as failures rather than crashing the run. A stale baseline can hide drift, so update `baseline.json` on purpose and in review.
+- **Failure points:** agent exceptions and invalid JSON are scored as failed cases rather than crashing the run; a malformed case file will still stop the run. A stale baseline can hide drift, so update `baseline.json` on purpose and in review.
 
 ## Deploy & ops
 
