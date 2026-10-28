@@ -70,6 +70,24 @@ The one failure (`extract-003`): the rule-based extractor split on the hyphen in
 
 > OpenAI numbers aren't published here yet. Run `--agent openai` with your key to generate them.
 
+## System design notes
+
+- **Deterministic baseline agent.** CI uses `agents/fixture_agent.py`, a rule-based agent, so every PR gets a reproducible score with no network, no secrets, and no cost. The OpenAI agent plugs into the same `run(task, input)` interface.
+- **Structured outputs over free text.** The OpenAI agent uses Pydantic schemas via `response_format` at temperature 0, so JSON validity and per-field accuracy can be scored mechanically.
+- **Two gates, not one.** An absolute floor (`--min-accuracy`, default 0.8) catches broken agents; a relative gate (`--max-regression`, default 0.02 vs `reports/baseline.json`) catches slow drift from prompt or model changes.
+- **Tolerant scoring.** Numbers match within 1%, strings exactly or fuzzily (≥0.85). That keeps harmless formatting differences from counting as failures, at the cost of sometimes accepting near-misses.
+- **Tradeoffs:** golden cases are small (12) and hand-written, so they show regressions, not general capability. Latency for the fixture agent is in-process and not representative of real API latency.
+- **Failure points:** malformed case files, agent exceptions, and invalid JSON are all scored as failures rather than crashing the run. A stale baseline can hide drift, so update `baseline.json` on purpose and in review.
+
+## Deploy & ops
+
+- **Local:** `pip install -r requirements.txt && pytest -q && python -m harness.runner --agent fixture --cases cases/`
+- **Env vars** (`.env.example`): `OPENAI_API_KEY` (optional, only for `--agent openai`), `OPENAI_MODEL` (default `gpt-4o-mini`).
+- **Secrets:** `.env` is git-ignored. In CI, set `OPENAI_API_KEY` as a repository secret. The OpenAI step is skipped when it isn't set.
+- **CI** (`.github/workflows/eval.yml`, on every PR and push to `main`): install → `pytest` → fixture eval with baseline + 0.8 gate → optional OpenAI eval → upload `reports/` as the `eval-report` artifact (always, even on failure).
+- **Updating the baseline:** run the fixture eval, review `reports/latest.md`, copy `latest.json` to `baseline.json`, and commit it in the same PR as the change that justifies it.
+- **Known limits:** no OpenAI results published yet; cost table is static per model; no dashboard or history beyond CI artifacts.
+
 ## Adding cases / agents
 
 - **Cases:** drop a YAML or JSON file in `cases/` with `task:` and a list of `{id, input, expected}`.
